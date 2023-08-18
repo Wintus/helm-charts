@@ -7,8 +7,8 @@ metadata:
   labels:
     {{- include "prometheus.server.labels" . | nindent 4 }}
 spec:
-  maxUnavailable: {{ .Values.server.podDisruptionBudget.maxUnavailable }}
   selector:
     matchLabels:
       {{- include "prometheus.server.matchLabels" . | nindent 6 }}
+  {{- toYaml .Values.podDisruptionBudget | nindent 2 }}
 {{- end }}
